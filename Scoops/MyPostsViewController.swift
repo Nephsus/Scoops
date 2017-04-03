@@ -7,13 +7,55 @@
 //
 
 import UIKit
+import Firebase
 
 class MyPostsViewController: UIViewController {
+    
+     var ModelPosts = [Post] ()
+    
+    
 
+    @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let nib = UINib(nibName: "PostViewCell", bundle: nil)
+        
+        self.collectionView.register(nib, forCellWithReuseIdentifier: "PostViewCell")
+        
+        let myPostRef = FIRDatabase.database().reference()
+        
+        
+        myPostRef.child("Posts").queryOrdered(byChild: "Property")
+            .queryEqual(toValue: "i02cajid@gmail.com")
+            .observe(.value, with: { snapshot in
+                 print( snapshot )
+               // snapshot
+               
+                for child in snapshot.children.allObjects as! [FIRDataSnapshot]{
+                    let dict = child.value as! [String : String]
+                    
+                    print("\(dict["Autor"])")
+                    
+                    self.ModelPosts.append( Post(withTitle: dict["Titulo"]!,
+                                                 author: dict["Autor"]!,
+                                                 photo: dict["Foto"]!,
+                                                 text: dict["Texto"]!))
+                
+
+                
+                }
+                
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+        
+            
+        } )
+        
+        
+    
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,8 +80,10 @@ class MyPostsViewController: UIViewController {
 extension MyPostsViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-                  return 0
-      
+        if ModelPosts.isEmpty{
+            return 0
+        }
+        return ModelPosts.count
     }
     
     

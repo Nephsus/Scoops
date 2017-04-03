@@ -62,7 +62,9 @@ class ViewController: UIViewController,ICoordinatorController {
                 return
             }
             
-            let posts : Array<[String : String]> = postDict["Posts"] as! Array<[String : String]>
+            //print("\(postDict)")
+            
+            /*let posts : Array<[String : String]> = postDict["Posts"] as! Array<[String : String]>
 
             for post in posts {
             
@@ -70,7 +72,21 @@ class ViewController: UIViewController,ICoordinatorController {
                                     author: post["Autor"]!,
                                     photo: post["Foto"]!,
                                     text: post["Texto"]!))
+            }*/
+ 
+            let posts  = postDict["Posts"] as! Dictionary<String , AnyObject>
+            
+            for (_, value) in posts{
+                
+                self.ModelPosts.append( Post(withTitle: value["Titulo"] as! String,
+                                             author: value["Autor"] as! String,
+                                             photo: value["Foto"] as! String,
+                                             text: value["Texto"] as! String))
+            
             }
+            
+            
+            
             
             DispatchQueue.main.async {
                 self.collectionPost.reloadData()
