@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_ScoopsVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_ScoopsVersionString[];
+FOUNDATION_EXPORT double JHSpinnerVersionNumber;
+FOUNDATION_EXPORT const unsigned char JHSpinnerVersionString[];
 

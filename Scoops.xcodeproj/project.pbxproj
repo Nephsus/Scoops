@@ -27,6 +27,10 @@
 		5B8234631E91785700858C90 /* MyPostsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8234611E91785700858C90 /* MyPostsViewCell.swift */; };
 		5B8234641E91785700858C90 /* MyPostsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B8234621E91785700858C90 /* MyPostsViewCell.xib */; };
 		5B8234661E91792300858C90 /* MyPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8234651E91792300858C90 /* MyPostsViewController.swift */; };
+		5B91BB191E92B90700F87EC7 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B91BB141E92B90700F87EC7 /* UIImage+Alpha.m */; };
+		5B91BB1A1E92B90700F87EC7 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B91BB161E92B90700F87EC7 /* UIImage+Resize.m */; };
+		5B91BB1B1E92B90700F87EC7 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B91BB181E92B90700F87EC7 /* UIImage+RoundedCorner.m */; };
+		5B91BB1D1E92CBDF00F87EC7 /* AsyncData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B91BB1C1E92CBDF00F87EC7 /* AsyncData.swift */; };
 		DAAA51FFA44A62E27076C8A0 /* Pods_Scoops.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BB3F2F5A8FD038EE8DA3C2 /* Pods_Scoops.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +58,14 @@
 		5B8234611E91785700858C90 /* MyPostsViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostsViewCell.swift; sourceTree = "<group>"; };
 		5B8234621E91785700858C90 /* MyPostsViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPostsViewCell.xib; sourceTree = "<group>"; };
 		5B8234651E91792300858C90 /* MyPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostsViewController.swift; sourceTree = "<group>"; };
+		5B91BB121E92B90600F87EC7 /* Scoops-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Scoops-Bridging-Header.h"; sourceTree = "<group>"; };
+		5B91BB131E92B90700F87EC7 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		5B91BB141E92B90700F87EC7 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		5B91BB151E92B90700F87EC7 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		5B91BB161E92B90700F87EC7 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		5B91BB171E92B90700F87EC7 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		5B91BB181E92B90700F87EC7 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		5B91BB1C1E92CBDF00F87EC7 /* AsyncData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncData.swift; sourceTree = "<group>"; };
 		9D8B7CC71DDAAA2CAF10C731 /* Pods-Scoops.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scoops.release.xcconfig"; path = "Pods/Target Support Files/Pods-Scoops/Pods-Scoops.release.xcconfig"; sourceTree = "<group>"; };
 		A318C716CA0F8460089C6A1F /* Pods-Scoops.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scoops.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Scoops/Pods-Scoops.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,6 +112,7 @@
 		5B4F5C6F1E8ADD2600CFFA9D /* Scoops */ = {
 			isa = PBXGroup;
 			children = (
+				5B91BB111E92B8FC00F87EC7 /* Frameworks */,
 				5B6796F51E8EC15000B19DBC /* Models */,
 				5B6796F21E8EB5FA00B19DBC /* Coordinators */,
 				5B0219D21E8EB5A6008664CC /* GoogleService-Info.plist */,
@@ -149,6 +162,21 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		5B91BB111E92B8FC00F87EC7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5B91BB1C1E92CBDF00F87EC7 /* AsyncData.swift */,
+				5B91BB131E92B90700F87EC7 /* UIImage+Alpha.h */,
+				5B91BB141E92B90700F87EC7 /* UIImage+Alpha.m */,
+				5B91BB151E92B90700F87EC7 /* UIImage+Resize.h */,
+				5B91BB161E92B90700F87EC7 /* UIImage+Resize.m */,
+				5B91BB171E92B90700F87EC7 /* UIImage+RoundedCorner.h */,
+				5B91BB181E92B90700F87EC7 /* UIImage+RoundedCorner.m */,
+				5B91BB121E92B90600F87EC7 /* Scoops-Bridging-Header.h */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7F93ABC08BB058299574E504 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +221,7 @@
 					5B4F5C6C1E8ADD2600CFFA9D = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = TXG6EHC68B;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -287,6 +316,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B8234661E91792300858C90 /* MyPostsViewController.swift in Sources */,
+				5B91BB1B1E92B90700F87EC7 /* UIImage+RoundedCorner.m in Sources */,
+				5B91BB1D1E92CBDF00F87EC7 /* AsyncData.swift in Sources */,
 				5B8234631E91785700858C90 /* MyPostsViewCell.swift in Sources */,
 				28327C7D1E925A00004DDC66 /* NewPostController.swift in Sources */,
 				5B6796FF1E8EC8E800B19DBC /* ICoordinatorController.swift in Sources */,
@@ -298,6 +329,8 @@
 				5B6796F71E8EC15E00B19DBC /* Post.swift in Sources */,
 				5B6796F91E8EC3D200B19DBC /* PostsCoordinator.swift in Sources */,
 				5B4F5C711E8ADD2600CFFA9D /* AppDelegate.swift in Sources */,
+				5B91BB191E92B90700F87EC7 /* UIImage+Alpha.m in Sources */,
+				5B91BB1A1E92B90700F87EC7 /* UIImage+Resize.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,12 +454,15 @@
 			baseConfigurationReference = A318C716CA0F8460089C6A1F /* Pods-Scoops.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = TXG6EHC68B;
 				INFOPLIST_FILE = Scoops/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dcava.mbass.scoops;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Scoops/Scoops-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -436,12 +472,14 @@
 			baseConfigurationReference = 9D8B7CC71DDAAA2CAF10C731 /* Pods-Scoops.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = TXG6EHC68B;
 				INFOPLIST_FILE = Scoops/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dcava.mbass.scoops;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Scoops/Scoops-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

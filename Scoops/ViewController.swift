@@ -62,31 +62,21 @@ class ViewController: UIViewController,ICoordinatorController {
                 return
             }
             
-            //print("\(postDict)")
             
-            /*let posts : Array<[String : String]> = postDict["Posts"] as! Array<[String : String]>
-
-            for post in posts {
-            
-            self.ModelPosts.append( Post(withTitle: post["Titulo"]!,
-                                    author: post["Autor"]!,
-                                    photo: post["Foto"]!,
-                                    text: post["Texto"]!))
-            }*/
- 
             let posts  = postDict["Posts"] as! Dictionary<String , AnyObject>
             
             for (_, value) in posts{
                 
+                print(value)
+                
                 self.ModelPosts.append( Post(withTitle: value["Titulo"] as! String,
                                              author: value["Autor"] as! String,
                                              photo: value["Foto"] as! String,
-                                             text: value["Texto"] as! String))
+                                             text: value["Texto"] as! String,
+                                             publishDate: value["publishDate"] as! Int ))
             
             }
-            
-            
-            
+
             
             DispatchQueue.main.async {
                 self.collectionPost.reloadData()
@@ -129,7 +119,9 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 3
         
-        cell.lbAuthor.text =   ModelPosts[indexPath.row].author
+        cell.createCell(post: ModelPosts[indexPath.row])
+        
+        //cell.lbAuthor.text =   ModelPosts[indexPath.row].author
         
         
         return cell

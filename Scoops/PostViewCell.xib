@@ -24,30 +24,30 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Autor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZGe-Rk-2ci">
-                        <rect key="frame" x="8" y="129" width="42" height="21"/>
+                        <rect key="frame" x="8" y="129" width="42" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="10"/>
+                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="9"/>
                         <color key="textColor" red="0.15686274509803921" green="0.5490196078431373" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fecha publicación" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJz-fp-lhY">
-                        <rect key="frame" x="8" y="167" width="89" height="21"/>
+                        <rect key="frame" x="8" y="164" width="89" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="10"/>
+                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="9"/>
                         <color key="textColor" red="0.15686274510000001" green="0.54901960780000003" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whm-gV-gnS">
-                        <rect key="frame" x="32" y="151" width="105" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whm-gV-gnS" userLabel="AuthorValue">
+                        <rect key="frame" x="8" y="146" width="123" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="10"/>
+                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="9"/>
                         <color key="textColor" red="0.15686274510000001" green="0.54901960780000003" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDk-NL-0m1">
-                        <rect key="frame" x="32" y="188" width="105" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDk-NL-0m1" userLabel="PublishValue">
+                        <rect key="frame" x="14" y="176" width="129" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="10"/>
+                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="9"/>
                         <color key="textColor" red="0.15686274510000001" green="0.54901960780000003" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -56,7 +56,9 @@
             <color key="backgroundColor" red="0.24313725490196078" green="0.30196078431372547" blue="0.40392156862745099" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <size key="customSize" width="153" height="212"/>
             <connections>
+                <outlet property="imagePost" destination="BgK-3V-PET" id="dwJ-kB-v3q"/>
                 <outlet property="lbAuthor" destination="whm-gV-gnS" id="Px6-FC-gk7"/>
+                <outlet property="publishValue" destination="XDk-NL-0m1" id="h0n-LS-tkM"/>
             </connections>
             <point key="canvasLocation" x="85.5" y="177"/>
         </collectionViewCell>

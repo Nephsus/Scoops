@@ -11,7 +11,7 @@ import Firebase
 
 class MyPostsViewController: UIViewController {
     
-     var ModelPosts = [Post] ()
+    var ModelPosts : [Post]!
     
     
 
@@ -27,22 +27,31 @@ class MyPostsViewController: UIViewController {
         let myPostRef = FIRDatabase.database().reference()
         
         
+        
         myPostRef.child("Posts").queryOrdered(byChild: "Property")
             .queryEqual(toValue: "i02cajid@gmail.com")
             .observe(.value, with: { snapshot in
                  print( snapshot )
                // snapshot
+                self.ModelPosts = [Post] ()
+                
                
                 for child in snapshot.children.allObjects as! [FIRDataSnapshot]{
-                    let dict = child.value as! [String : String]
+                    let dict = child.value as! Dictionary<String , AnyObject>
                     
                     print("\(dict["Autor"])")
                     
-                    self.ModelPosts.append( Post(withTitle: dict["Titulo"]!,
-                                                 author: dict["Autor"]!,
-                                                 photo: dict["Foto"]!,
-                                                 text: dict["Texto"]!))
-                
+               
+                        
+                        self.ModelPosts.append( Post(withTitle: dict["Titulo"] as! String,
+                                                     author: dict["Autor"] as! String,
+                                                     photo: dict["Foto"] as! String,
+                                                     text: dict["Texto"] as! String,
+                                                     publishDate: dict["publishDate"] as! Int ))
+                        
+                    
+                    
+                print("\(self.ModelPosts.count)")
 
                 
                 }
@@ -80,7 +89,7 @@ class MyPostsViewController: UIViewController {
 extension MyPostsViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if ModelPosts.isEmpty{
+        if ModelPosts == nil || ModelPosts.isEmpty{
             return 0
         }
         return ModelPosts.count
