@@ -16,13 +16,19 @@ class MyPostsViewController: UIViewController {
     
 
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    
+    @IBOutlet weak var PostsPublish: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let nib = UINib(nibName: "PostViewCell", bundle: nil)
+        let nib = UINib(nibName: "MyPostsViewCell", bundle: nil)
         
-        self.collectionView.register(nib, forCellWithReuseIdentifier: "PostViewCell")
+        self.collectionView.register(nib, forCellWithReuseIdentifier: "MyPostsViewCell")
+        
+        self.PostsPublish.register(nib, forCellWithReuseIdentifier: "MyPostsViewCell")
         
         let myPostRef = FIRDatabase.database().reference()
         
@@ -58,6 +64,7 @@ class MyPostsViewController: UIViewController {
                 
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
+                    self.PostsPublish.reloadData()
                 }
         
             
@@ -97,7 +104,12 @@ extension MyPostsViewController: UICollectionViewDataSource, UICollectionViewDel
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostViewCell", for: indexPath) as! PostViewCell
+       
+  
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyPostsViewCell", for: indexPath) as! MyPostsViewCell
+
+        
         
         cell.layer.borderColor = UIColor(hex: "#288CFB").cgColor
         cell.layer.shadowColor = UIColor.black.cgColor

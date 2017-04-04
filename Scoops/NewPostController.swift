@@ -11,6 +11,14 @@ import Firebase
 import FirebaseStorage
 import JHSpinner
 
+enum ModeWorkPostController {
+
+    case editable
+    case readable
+
+}
+
+
 class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     let imagePicker = UIImagePickerController()
@@ -34,11 +42,29 @@ class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINa
     @IBOutlet weak var imageView: UIImageView!
     
     
+    
+    var mode : ModeWorkPostController = .editable
+    
+    var postSelected  : Post!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
         imagePicker.delegate = self
+        
+        
+        if  mode == .readable{
+           self.txtTitle.isUserInteractionEnabled = false
+           self.txtBody.isUserInteractionEnabled = false
+           self.status.isHidden = true
+           self.btnNewPost.isHidden = true
+            
+            self.txtTitle.text =  postSelected.title
+            self.txtBody.text =  postSelected.text
+            
+        }
         
         // Do any additional setup after loading the view.
     }

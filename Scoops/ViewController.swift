@@ -74,15 +74,11 @@ class ViewController: UIViewController,ICoordinatorController , IReadPost {
                                              photo: value["Foto"] as! String,
                                              text: value["Texto"] as! String,
                                              publishDate: value["publishDate"] as! Int ))
-            
             }
-
             
             DispatchQueue.main.async {
                 self.collectionPost.reloadData()
             }
-            
-            
         })
         
      
@@ -96,9 +92,29 @@ class ViewController: UIViewController,ICoordinatorController , IReadPost {
     
     
     func performReadPost(withPost post: Post ){
+        
+        
+       
+        self.performSegue(withIdentifier: "readPost", sender: post)
     
-        self.performSegue(withIdentifier: "readPost", sender: self)
+    }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "readPost"{
+         
+           guard let post = sender as? Post else {
+               return
+            }
+            
+        let vc = segue.destination as! NewPostController
+            vc.mode = .readable
+            vc.postSelected = post
+            
+        
+        }
+        
+        
     }
 
 
