@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		28327C7D1E925A00004DDC66 /* NewPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28327C7C1E925A00004DDC66 /* NewPostController.swift */; };
+		283EB5531E937FC700DAFFE4 /* IReadPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283EB5521E937FC700DAFFE4 /* IReadPost.swift */; };
 		5B0219D31E8EB5A6008664CC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B0219D21E8EB5A6008664CC /* GoogleService-Info.plist */; };
 		5B4F5C711E8ADD2600CFFA9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4F5C701E8ADD2600CFFA9D /* AppDelegate.swift */; };
 		5B4F5C731E8ADD2600CFFA9D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4F5C721E8ADD2600CFFA9D /* ViewController.swift */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		07BB3F2F5A8FD038EE8DA3C2 /* Pods_Scoops.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Scoops.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		28327C7C1E925A00004DDC66 /* NewPostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostController.swift; sourceTree = "<group>"; };
+		283EB5521E937FC700DAFFE4 /* IReadPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IReadPost.swift; sourceTree = "<group>"; };
 		5B0219D21E8EB5A6008664CC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5B4F5C6D1E8ADD2600CFFA9D /* Scoops.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scoops.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B4F5C701E8ADD2600CFFA9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				5B8234621E91785700858C90 /* MyPostsViewCell.xib */,
 				5B8234651E91792300858C90 /* MyPostsViewController.swift */,
 				28327C7C1E925A00004DDC66 /* NewPostController.swift */,
+				283EB5521E937FC700DAFFE4 /* IReadPost.swift */,
 			);
 			path = Scoops;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				28327C7D1E925A00004DDC66 /* NewPostController.swift in Sources */,
 				5B6796FF1E8EC8E800B19DBC /* ICoordinatorController.swift in Sources */,
 				5B4F5C731E8ADD2600CFFA9D /* ViewController.swift in Sources */,
+				283EB5531E937FC700DAFFE4 /* IReadPost.swift in Sources */,
 				5B6D89571E8C22E900BAC151 /* UIColor+Hexadecimal.swift in Sources */,
 				5B82345F1E9168E700858C90 /* PostViewCell.swift in Sources */,
 				5B6796FB1E8EC42700B19DBC /* ICoordinator.swift in Sources */,

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="OEK-Cx-51H">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="OEK-Cx-51H">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -55,6 +55,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionPost" destination="L3K-7U-SZ0" id="T8h-e4-3mg"/>
+                        <segue destination="3fg-Uh-4L1" kind="show" identifier="readPost" id="gVY-Mp-2OA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -106,7 +107,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Upf-Gz-KPB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="862" y="139"/>
+            <point key="canvasLocation" x="918" y="499"/>
         </scene>
         <!--New Post Controller-->
         <scene sceneID="dFe-BD-EYp">
@@ -199,7 +200,7 @@
         <scene sceneID="Vna-lg-Es3">
             <objects>
                 <navigationController id="OEK-Cx-51H" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" id="3Xp-8I-B12">
+                    <navigationBar key="navigationBar" clipsSubviews="YES" contentMode="scaleToFill" id="3Xp-8I-B12">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.043137254901960784" green="0.18431372549019609" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -220,4 +221,7 @@
             <point key="canvasLocation" x="-628" y="139"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="gVY-Mp-2OA"/>
+    </inferredMetricsTieBreakers>
 </document>

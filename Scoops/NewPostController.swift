@@ -158,6 +158,12 @@ class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINa
     }
     
     
+    
+    
+    
+    
+    
+    
 }
 
 

@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ViewController: UIViewController,ICoordinatorController {
+class ViewController: UIViewController,ICoordinatorController , IReadPost {
     
     
     
@@ -93,6 +93,13 @@ class ViewController: UIViewController,ICoordinatorController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    func performReadPost(withPost post: Post ){
+    
+        self.performSegue(withIdentifier: "readPost", sender: self)
+    
+    }
 
 
 }
@@ -120,6 +127,9 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         cell.layer.cornerRadius = 3
         
         cell.createCell(post: ModelPosts[indexPath.row])
+        
+        cell.delegate = self
+        
         
         //cell.lbAuthor.text =   ModelPosts[indexPath.row].author
         

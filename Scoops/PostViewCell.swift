@@ -21,6 +21,9 @@ class PostViewCell: UICollectionViewCell {
     @IBOutlet weak var lbAuthor: UILabel!
     
     
+    weak var delegate : IReadPost?
+    
+    
     
     @IBOutlet weak var publishValue: UILabel!
     
@@ -52,13 +55,24 @@ class PostViewCell: UICollectionViewCell {
                             
                             
                                 self.imagePost.image =  UIImage(data: (self.post.imagePost?.data)!)
-                            
+                                self.imagePost.contentMode = .scaleToFill
                             
                             
         }, completion: nil)
         
         
         }
+    }
+    
+    
+    
+    
+    
+
+    
+    @IBAction func readMore(_ sender: Any) {
+        self.delegate?.performReadPost(withPost: self.post)
+        
     }
     
 }
