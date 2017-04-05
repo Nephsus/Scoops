@@ -10,12 +10,9 @@ import UIKit
 
 class MyPostsViewCell: UICollectionViewCell {
     
-     weak var delegate : IReadPost?
+    weak var delegate : IMyPostCell?
     
     var post: Post!
-    
-    
-    
     
     @IBOutlet weak var imagePost: UIImageView!
     
@@ -68,7 +65,7 @@ class MyPostsViewCell: UICollectionViewCell {
     
     @IBAction func publishButton(_ sender: Any) {
         
-        self.delegate?.performReadPost(withPost: self.post)
+        self.delegate?.publishPost(withPost: self.post)
         
     }
     

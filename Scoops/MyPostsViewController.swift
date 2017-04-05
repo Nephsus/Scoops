@@ -8,8 +8,9 @@
 
 import UIKit
 import Firebase
+import JHSpinner
 
-class MyPostsViewController: UIViewController, IReadPost {
+class MyPostsViewController: UIViewController, IMyPostCell {
     
     var ModelPosts : [Post]!
     var ModelPostsPublish : [Post]!
@@ -30,69 +31,80 @@ class MyPostsViewController: UIViewController, IReadPost {
         
         self.PostsPublish.register(nib, forCellWithReuseIdentifier: "MyPostsViewCell")
         
-        let myPostRef = FIRDatabase.database().reference()
         
-        
-        
-        myPostRef.child("Posts").queryOrdered(byChild: "Property")
-            .queryEqual(toValue: "i02cajid@gmail.com")
-            .observe(.value, with: { snapshot in
-                 print( snapshot )
-               // snapshot
-                self.ModelPosts = [Post] ()
-                self.ModelPostsPublish = [Post] ()
-               
-                for child in snapshot.children.allObjects as! [FIRDataSnapshot]{
-                    let dict = child.value as! Dictionary<String , AnyObject>
-                    
-                    print("\(dict["Autor"])")
-                    
-               
-                    if let publish = dict["isPublish"] as! Bool? {
-                       
-                        if !publish {
-                            self.ModelPosts.append( Post(withTitle: dict["Titulo"] as! String,
-                                                         author: dict["Autor"] as! String,
-                                                         photo: dict["Foto"] as! String,
-                                                         text: dict["Texto"] as! String,
-                                                         publishDate: dict["publishDate"] as! Int,
-                                                         isPublish: publish))
-                        }else{
-                            self.ModelPostsPublish.append( Post(withTitle: dict["Titulo"] as! String,
-                                                                author: dict["Autor"] as! String,
-                                                                photo: dict["Foto"] as! String,
-                                                                text: dict["Texto"] as! String,
-                                                                publishDate: dict["publishDate"] as! Int,
-                                                                isPublish: publish))
-                        }
-                        
-                    }else{
-                        self.ModelPosts.append( Post(withTitle: dict["Titulo"] as! String,
-                                                            author: dict["Autor"] as! String,
-                                                            photo: dict["Foto"] as! String,
-                                                            text: dict["Texto"] as! String,
-                                                            publishDate: dict["publishDate"] as! Int,
-                                                            isPublish: false))
-                    
-                    }
-                    
-                 
-                    
-                    
-                    print("\(self.ModelPosts.count)")
-
-                
-                }
-                
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                    self.PostsPublish.reloadData()
-                }
-        
-            
-        } )
-        
-        
+        loadPosts()
+    
+    }
+    
+    
+    func loadPosts(){
+    let myPostRef = FIRDatabase.database().reference()
+    
+    
+    
+    myPostRef.child("Posts").queryOrdered(byChild: "Property")
+    .queryEqual(toValue: "i02cajid@gmail.com")
+    .observe(.value, with: { snapshot in
+    print( snapshot )
+    // snapshot
+    self.ModelPosts = [Post] ()
+    self.ModelPostsPublish = [Post] ()
+    
+    for child in snapshot.children.allObjects as! [FIRDataSnapshot]{
+    
+    print(child)
+    let dict = child.value as! Dictionary<String , AnyObject>
+    
+    print("\(dict["Autor"])")
+    
+    
+    if let publish = dict["isPublish"] as! Bool? {
+    
+    if !publish {
+    self.ModelPosts.append( Post(withKey: child.key,
+    title: dict["Titulo"] as! String,
+    author: dict["Autor"] as! String,
+    photo: dict["Foto"] as! String,
+    text: dict["Texto"] as! String,
+    publishDate: dict["publishDate"] as! Int,
+    isPublish: publish))
+    }else{
+    self.ModelPostsPublish.append( Post(withKey: child.key,
+    title: dict["Titulo"] as! String,
+    author: dict["Autor"] as! String,
+    photo: dict["Foto"] as! String,
+    text: dict["Texto"] as! String,
+    publishDate: dict["publishDate"] as! Int,
+    isPublish: publish))
+    }
+    
+    }else{
+    self.ModelPosts.append( Post(withKey: child.key,
+    title: dict["Titulo"] as! String,
+    author: dict["Autor"] as! String,
+    photo: dict["Foto"] as! String,
+    text: dict["Texto"] as! String,
+    publishDate: dict["publishDate"] as! Int,
+    isPublish: false))
+    
+    }
+    
+    
+    
+    
+    print("\(self.ModelPosts.count)")
+    
+    
+    }
+    
+    DispatchQueue.main.async {
+    self.collectionView.reloadData()
+    self.PostsPublish.reloadData()
+    }
+    
+    
+    } )
+    
     
     }
 
@@ -102,7 +114,7 @@ class MyPostsViewController: UIViewController, IReadPost {
     }
     
 
-    func performReadPost(withPost post: Post ){ 
+    func performReadPost(withPost post: Post ){
         self.performSegue(withIdentifier: "AddPost", sender: post)
         
     }
@@ -124,6 +136,45 @@ class MyPostsViewController: UIViewController, IReadPost {
         
         
     }
+    
+    
+    func tapOnCoverPost(withPost post: Post){
+    
+    
+    }
+    
+    func publishPost(withPost post: Post){
+        
+        let spinner = JHSpinnerView.showDeterminiteSpinnerOnView(self.view)
+        spinner.progress = 0.0
+        spinner.tintColor = UIColor(hex: "#288CFB")
+        
+        view.addSubview(spinner)
+        
+
+    
+        let myPostRef = FIRDatabase.database().reference()
+        
+        myPostRef.child("Posts/\(post.key)").updateChildValues(["isPublish" : true]) {[weak self] (error, reference) in
+            print("DO IT¡¡¡¡¡")
+            guard let `self` = self else {
+              return
+            }
+            
+            self.ModelPosts = [Post] ()
+            self.ModelPostsPublish = [Post] ()
+            
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+                self.PostsPublish.reloadData()
+            }
+           
+            self.loadPosts()
+            spinner.dismiss()
+        }
+    
+    }
+
 
 }
 

@@ -63,17 +63,21 @@ class ViewController: UIViewController,ICoordinatorController , IReadPost {
             }
             
             
+            print(postDict)
+            
             let posts  = postDict["Posts"] as! Dictionary<String , AnyObject>
             
-            for (_, value) in posts{
+            for (key, value) in posts{
                 
-                print(value)
+                print(key)
                 
-                self.ModelPosts.append( Post(withTitle: value["Titulo"] as! String,
+                self.ModelPosts.append( Post(withKey: key,
+                                             title: value["Titulo"] as! String,
                                              author: value["Autor"] as! String,
                                              photo: value["Foto"] as! String,
                                              text: value["Texto"] as! String,
-                                             publishDate: value["publishDate"] as! Int ))
+                                             publishDate: value["publishDate"] as! Int
+                                         ))
             }
             
             DispatchQueue.main.async {

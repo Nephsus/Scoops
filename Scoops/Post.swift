@@ -10,7 +10,7 @@ import Foundation
 
 struct Post {
     
-    
+    var key : String
     var title : String
     var author: String
     var photo : String
@@ -31,13 +31,15 @@ struct Post {
     }
     var isPublish: Bool
    
-    init(withTitle title: String,
+    init(withKey key: String,
+         title: String,
          author: String,
          photo: String,
          text: String,
          publishDate: Int,
          isPublish:Bool) {
         
+        self.key = key
         self.title = title
         self.author = author
         self.photo = photo
@@ -52,12 +54,14 @@ struct Post {
     
     
     
-     init(withTitle title: String,
-         author: String,
-         photo: String,
-         text: String,
-         publishDate: Int) {
+     init(withKey key: String,
+          title: String,
+          author: String,
+          photo: String,
+          text: String,
+          publishDate: Int) {
         
+        self.key = key
         self.title = title
         self.author = author
         self.photo = photo
