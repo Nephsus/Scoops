@@ -10,7 +10,7 @@ import Foundation
 
 
 
-protocol IReadPost: class {
+ protocol IReadPost: class {
     
-    func performReadPost(withPost post: Post )
+     func performReadPost(withPost post: Post )
 }

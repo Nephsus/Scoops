@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -19,8 +19,9 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="noimage.png" translatesAutoresizingMaskIntoConstraints="NO" id="5Ba-QG-T8q">
-                        <rect key="frame" x="0.0" y="0.0" width="82" height="53"/>
+                        <rect key="frame" x="0.0" y="0.0" width="85" height="53"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dVJ-vF-JOj">
                         <rect key="frame" x="8" y="117" width="99" height="21"/>
@@ -29,11 +30,6 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWS-HL-rFP">
-                        <rect key="frame" x="14" y="98" width="56" height="30"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <state key="normal" title="Publicar"/>
-                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Título" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CiF-dI-9om">
                         <rect key="frame" x="0.0" y="69" width="44" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -41,10 +37,30 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWS-HL-rFP">
+                        <rect key="frame" x="8" y="107" width="69" height="15"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="1" green="0.28239483207949134" blue="0.10231652994316065" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="9"/>
+                        <state key="normal" title="Publicar"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="7"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="publishButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="M3W-AW-CwU"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
+            <color key="backgroundColor" red="0.15816453435201924" green="0.25997514246464226" blue="0.49242788461538467" alpha="1" colorSpace="calibratedRGB"/>
             <size key="customSize" width="84" height="128"/>
-            <point key="canvasLocation" x="51" y="189"/>
+            <connections>
+                <outlet property="imagePost" destination="5Ba-QG-T8q" id="R17-Zj-bI4"/>
+                <outlet property="lbTitle" destination="CiF-dI-9om" id="0B7-01-yfa"/>
+            </connections>
+            <point key="canvasLocation" x="50.5" y="189"/>
         </collectionViewCell>
     </objects>
     <resources>

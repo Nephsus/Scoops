@@ -108,6 +108,11 @@ class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINa
         
         view.addSubview(spinner)
         
+        
+        let isPublish = status.isOn
+        
+        
+        
         let storage = FIRStorage.storage()
         // Create a storage reference from our storage service
         let storageRef = storage.reference(forURL: "gs://scoops-7c457.appspot.com")
@@ -142,7 +147,7 @@ class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINa
                                "Texto" : self.txtBody.text!,
                                "Property" : self.userEmail,
                                "publishDate" : [".sv": "timestamp"] ,
-                               "IsPublish" : false] as [String : Any]
+                               "IsPublish" : isPublish] as [String : Any]
                 
                 let registerFB = ["\(key)" : newPost]
                 

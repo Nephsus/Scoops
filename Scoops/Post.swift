@@ -29,10 +29,30 @@ struct Post {
               return  time
         }
     }
+    var isPublish: Bool
    
-    
-    
     init(withTitle title: String,
+         author: String,
+         photo: String,
+         text: String,
+         publishDate: Int,
+         isPublish:Bool) {
+        
+        self.title = title
+        self.author = author
+        self.photo = photo
+        self.text = text
+        self.publishDate = publishDate
+        self.isPublish = isPublish
+        
+        imagePost = AsyncData(url: URL(string: photo )!, defaultData: PostViewCell.noImageData!)
+        
+    }
+
+    
+    
+    
+     init(withTitle title: String,
          author: String,
          photo: String,
          text: String,
@@ -43,10 +63,13 @@ struct Post {
         self.photo = photo
         self.text = text
         self.publishDate = publishDate
+        self.isPublish = false
         
         imagePost = AsyncData(url: URL(string: photo )!, defaultData: PostViewCell.noImageData!)
-        
     }
+    
+    
+    
     
     
     

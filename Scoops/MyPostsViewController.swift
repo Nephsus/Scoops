@@ -9,10 +9,10 @@
 import UIKit
 import Firebase
 
-class MyPostsViewController: UIViewController {
+class MyPostsViewController: UIViewController, IReadPost {
     
     var ModelPosts : [Post]!
-    
+    var ModelPostsPublish : [Post]!
     
 
     @IBOutlet weak var collectionView: UICollectionView!
@@ -40,7 +40,7 @@ class MyPostsViewController: UIViewController {
                  print( snapshot )
                // snapshot
                 self.ModelPosts = [Post] ()
-                
+                self.ModelPostsPublish = [Post] ()
                
                 for child in snapshot.children.allObjects as! [FIRDataSnapshot]{
                     let dict = child.value as! Dictionary<String , AnyObject>
@@ -48,16 +48,38 @@ class MyPostsViewController: UIViewController {
                     print("\(dict["Autor"])")
                     
                
+                    if let publish = dict["isPublish"] as! Bool? {
+                       
+                        if !publish {
+                            self.ModelPosts.append( Post(withTitle: dict["Titulo"] as! String,
+                                                         author: dict["Autor"] as! String,
+                                                         photo: dict["Foto"] as! String,
+                                                         text: dict["Texto"] as! String,
+                                                         publishDate: dict["publishDate"] as! Int,
+                                                         isPublish: publish))
+                        }else{
+                            self.ModelPostsPublish.append( Post(withTitle: dict["Titulo"] as! String,
+                                                                author: dict["Autor"] as! String,
+                                                                photo: dict["Foto"] as! String,
+                                                                text: dict["Texto"] as! String,
+                                                                publishDate: dict["publishDate"] as! Int,
+                                                                isPublish: publish))
+                        }
                         
+                    }else{
                         self.ModelPosts.append( Post(withTitle: dict["Titulo"] as! String,
-                                                     author: dict["Autor"] as! String,
-                                                     photo: dict["Foto"] as! String,
-                                                     text: dict["Texto"] as! String,
-                                                     publishDate: dict["publishDate"] as! Int ))
-                        
+                                                            author: dict["Autor"] as! String,
+                                                            photo: dict["Foto"] as! String,
+                                                            text: dict["Texto"] as! String,
+                                                            publishDate: dict["publishDate"] as! Int,
+                                                            isPublish: false))
+                    
+                    }
+                    
+                 
                     
                     
-                print("\(self.ModelPosts.count)")
+                    print("\(self.ModelPosts.count)")
 
                 
                 }
@@ -80,15 +102,28 @@ class MyPostsViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func performReadPost(withPost post: Post ){ 
+        self.performSegue(withIdentifier: "AddPost", sender: post)
+        
     }
-    */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "AddPost"{
+            
+            guard let post = sender as? Post else {
+                return
+            }
+            
+            let vc = segue.destination as! NewPostController
+            vc.mode = .readable
+            vc.postSelected = post
+            
+            
+        }
+        
+        
+    }
 
 }
 
@@ -96,10 +131,19 @@ class MyPostsViewController: UIViewController {
 extension MyPostsViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if ModelPosts == nil || ModelPosts.isEmpty{
+        
+        if(collectionView == self.collectionView){
+            if ModelPosts == nil || ModelPosts.isEmpty{
             return 0
+            }
+            return ModelPosts.count
+        }else{
+            if ModelPostsPublish == nil || ModelPostsPublish.isEmpty{
+                return 0
+            }
+            return ModelPostsPublish.count
+        
         }
-        return ModelPosts.count
     }
     
     
@@ -118,6 +162,15 @@ extension MyPostsViewController: UICollectionViewDataSource, UICollectionViewDel
         cell.layer.shadowOpacity = 1.0;
         cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 3
+        
+        cell.delegate = self
+        
+        if(collectionView == self.collectionView){
+                cell.createCell(post: ModelPosts[indexPath.row])
+        }else{
+                cell.createCell(post: ModelPostsPublish[indexPath.row])
+
+        }
         
        // cell.lbAuthor.text =   ModelPosts[indexPath.row].author
         
