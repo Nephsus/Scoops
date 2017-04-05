@@ -11,5 +11,6 @@ target 'Scoops' do
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
   pod 'JHSpinner'
+  pod 'AARatingBar'
   
 end
