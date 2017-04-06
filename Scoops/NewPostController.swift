@@ -45,6 +45,9 @@ class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINa
     
     @IBOutlet weak var ratingBar: AARatingBar!
     
+    
+    @IBOutlet weak var lbPublishStatus: UILabel!
+    
     var mode : ModeWorkPostController = .editable
     
     var postSelected  : Post!
@@ -69,7 +72,18 @@ class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINa
            
         }
         
+        status.addTarget(self, action: #selector(self.stateChanged(switchState:)), for: UIControlEvents.valueChanged)
+        
         // Do any additional setup after loading the view.
+    }
+    
+    
+    func stateChanged(switchState: UISwitch) {
+        if status.isOn {
+            lbPublishStatus.text = "Publicar Automáticamente"
+        } else {
+            lbPublishStatus.text = "Publicar Manualmente"
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -152,7 +166,9 @@ class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINa
                                "Texto" : self.txtBody.text!,
                                "Property" : self.userEmail,
                                "publishDate" : [".sv": "timestamp"] ,
-                               "IsPublish" : isPublish] as [String : Any]
+                               "IsPublish" : isPublish,
+                               "Rating": 0 ,
+                               "TotalRatings" : 0] as [String : Any]
                 
                 let registerFB = ["\(key)" : newPost]
                 
@@ -194,7 +210,8 @@ class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINa
                 
             }, andCompletionBlock: { (error, bool, snapshot) in
                 spinner.dismiss()
-                print(error)
+                
+                let _ = self.navigationController?.popViewController(animated: true)
                 
                 
             })

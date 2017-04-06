@@ -39,10 +39,7 @@ class PostViewCell: UICollectionViewCell {
     func createCell( post: Post) -> Void {
         
         self.post = post
-        
-        
 
-        
         syncModelView()
         
         post.imagePost?.delegate = self
@@ -51,12 +48,13 @@ class PostViewCell: UICollectionViewCell {
 
      func syncModelView(  ) {
     
+            print("DAvviii: \(self.post.ratingValoration)")
         self.ratingBar.value = self.post.ratingValoration
+        self.ratingBar.draw(ratingBar.frame)
         
         DispatchQueue.main.async {
         self.lbAuthor.text = self.post.author
         self.publishValue.text = self.post.publishDateFormat
-        self.ratingBar.value = self.post.ratingValoration
         //self.imagePost.image = UIImage(data: (self.post.imagePost?.data)!)
             
         print( self.ratingBar.value  )
@@ -77,8 +75,7 @@ class PostViewCell: UICollectionViewCell {
     }
     
     @IBAction func readMore(_ sender: Any) {
-        self.delegate?.performReadPost(withPost: self.post)
-        
+       self.delegate?.performReadPost(withPost: self.post)
     }
     
 }

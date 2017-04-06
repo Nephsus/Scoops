@@ -35,8 +35,13 @@ struct Post {
     
     var ratingValoration : CGFloat {
         get {
-              return CGFloat(rating) / CGFloat(totalRating)
-        
+            
+            if totalRating > 0 {
+                return  CGFloat(rating) / CGFloat(totalRating)
+            }
+            else{
+                return 0
+            }
         }
     
     }
