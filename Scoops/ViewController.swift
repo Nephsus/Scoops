@@ -63,7 +63,7 @@ class ViewController: UIViewController,ICoordinatorController , IReadPost {
             }
             
             
-            print(postDict)
+            self.ModelPosts = [Post]()
             
             let posts  = postDict["Posts"] as! Dictionary<String , AnyObject>
             
@@ -76,7 +76,9 @@ class ViewController: UIViewController,ICoordinatorController , IReadPost {
                                              author: value["Autor"] as! String,
                                              photo: value["Foto"] as! String,
                                              text: value["Texto"] as! String,
-                                             publishDate: value["publishDate"] as! Int
+                                             publishDate: value["publishDate"] as! Int,
+                                             rating: value["Rating"] as! Int,
+                                             totalRating: value["TotalRatings"] as! Int
                                          ))
             }
             

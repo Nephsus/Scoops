@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import AARatingBar
 
 class PostViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
     }
     
     static let noImageData = UIImagePNGRepresentation (UIImage(named: "noimage.png")!)
@@ -30,9 +32,16 @@ class PostViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imagePost: UIImageView!
     
+    
+    
+    @IBOutlet weak var ratingBar: AARatingBar!
+    
     func createCell( post: Post) -> Void {
         
         self.post = post
+        
+        
+
         
         syncModelView()
         
@@ -42,12 +51,15 @@ class PostViewCell: UICollectionViewCell {
 
      func syncModelView(  ) {
     
+        self.ratingBar.value = self.post.ratingValoration
         
         DispatchQueue.main.async {
         self.lbAuthor.text = self.post.author
         self.publishValue.text = self.post.publishDateFormat
-        self.imagePost.image = UIImage(data: (self.post.imagePost?.data)!)
+        self.ratingBar.value = self.post.ratingValoration
+        //self.imagePost.image = UIImage(data: (self.post.imagePost?.data)!)
             
+        print( self.ratingBar.value  )
         UIView.transition(with: self.imagePost,
                           duration: 0.3,
                           options: [.transitionCrossDissolve],
@@ -63,12 +75,6 @@ class PostViewCell: UICollectionViewCell {
         
         }
     }
-    
-    
-    
-    
-    
-
     
     @IBAction func readMore(_ sender: Any) {
         self.delegate?.performReadPost(withPost: self.post)

@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseStorage
 import JHSpinner
+import AARatingBar
 
 enum ModeWorkPostController {
 
@@ -42,6 +43,7 @@ class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINa
     @IBOutlet weak var imageView: UIImageView!
     
     
+    @IBOutlet weak var ratingBar: AARatingBar!
     
     var mode : ModeWorkPostController = .editable
     
@@ -59,11 +61,12 @@ class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINa
            self.txtTitle.isUserInteractionEnabled = false
            self.txtBody.isUserInteractionEnabled = false
            self.status.isHidden = true
-           self.btnNewPost.isHidden = true
+           self.btnNewPost.setTitle( "Valorar" , for: .normal )
+            
             
             self.txtTitle.text =  postSelected.title
             self.txtBody.text =  postSelected.text
-            
+           
         }
         
         // Do any additional setup after loading the view.
@@ -97,16 +100,18 @@ class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINa
     }
     @IBAction func btnNewPost(_ sender: Any) {
         
-        
-       
-        // Get a reference to the storage service, using the default Firebase App
-        
-        
         let spinner = JHSpinnerView.showDeterminiteSpinnerOnView(self.view)
         spinner.progress = 0.0
         spinner.tintColor = UIColor(hex: "#288CFB")
         
         view.addSubview(spinner)
+       
+        // Get a reference to the storage service, using the default Firebase App
+        
+        if  mode != .readable{ //Alta nuevo post
+
+        
+       
         
         
         let isPublish = status.isOn
@@ -160,6 +165,44 @@ class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINa
                     
                 })
             }
+            }
+        }else{ //Valorar
+            
+            let postRef = FIRDatabase.database().reference()
+        
+            
+            
+            
+            postRef.child("Posts/\(postSelected.key)").runTransactionBlock({ (data) -> FIRTransactionResult in
+                
+                var p = data.value as! Dictionary<String,AnyObject>
+                print(p)
+                
+                var ratings = p["Rating"] as! Int
+                
+                ratings = ratings + Int(self.ratingBar.value)
+                
+                p["Rating"] = ratings as AnyObject?
+                
+                p["TotalRatings"] = ((p["TotalRatings"] as! Int) + 1) as AnyObject?
+                
+                data.value = p
+                
+              return FIRTransactionResult.success(withValue: data)
+             
+                
+                
+            }, andCompletionBlock: { (error, bool, snapshot) in
+                spinner.dismiss()
+                print(error)
+                
+                
+            })
+            
+                                                                
+            
+        
+        
         }
         
     }

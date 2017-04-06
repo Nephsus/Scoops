@@ -52,10 +52,16 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xfu-ph-L4y">
-                        <rect key="frame" x="77" y="194" width="66" height="16"/>
+                        <rect key="frame" x="77" y="189" width="66" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="1" green="0.28235294117647058" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="9"/>
-                        <state key="normal" title="Leer más &gt;&gt;"/>
+                        <state key="normal" title="Leer más"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="7"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="readMore:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Tjz-NV-e63"/>
                         </connections>
@@ -72,13 +78,13 @@
                                 <integer key="value" value="5"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="value">
-                                <real key="value" value="2"/>
+                                <real key="value" value="0.0"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="color">
                                 <color key="value" red="0.15686274509803921" green="0.5490196078431373" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="isAbsValue" value="NO"/>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="isEnabled" value="NO"/>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isEnabled" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
@@ -89,6 +95,7 @@
                 <outlet property="imagePost" destination="BgK-3V-PET" id="dwJ-kB-v3q"/>
                 <outlet property="lbAuthor" destination="whm-gV-gnS" id="Px6-FC-gk7"/>
                 <outlet property="publishValue" destination="XDk-NL-0m1" id="h0n-LS-tkM"/>
+                <outlet property="ratingBar" destination="59e-lk-VCs" id="cG9-Wb-izh"/>
             </connections>
             <point key="canvasLocation" x="85.5" y="177"/>
         </collectionViewCell>

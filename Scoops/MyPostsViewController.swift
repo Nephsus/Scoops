@@ -67,7 +67,9 @@ class MyPostsViewController: UIViewController, IMyPostCell {
     photo: dict["Foto"] as! String,
     text: dict["Texto"] as! String,
     publishDate: dict["publishDate"] as! Int,
-    isPublish: publish))
+    isPublish: publish,
+    rating: dict["Rating"] as! Int,
+    totalRating: dict["TotalRatings"] as! Int))
     }else{
     self.ModelPostsPublish.append( Post(withKey: child.key,
     title: dict["Titulo"] as! String,
@@ -75,7 +77,9 @@ class MyPostsViewController: UIViewController, IMyPostCell {
     photo: dict["Foto"] as! String,
     text: dict["Texto"] as! String,
     publishDate: dict["publishDate"] as! Int,
-    isPublish: publish))
+    isPublish: publish,
+    rating: dict["Rating"] as! Int,
+    totalRating: dict["TotalRatings"] as! Int))
     }
     
     }else{
@@ -85,7 +89,9 @@ class MyPostsViewController: UIViewController, IMyPostCell {
     photo: dict["Foto"] as! String,
     text: dict["Texto"] as! String,
     publishDate: dict["publishDate"] as! Int,
-    isPublish: false))
+    isPublish: false,
+    rating: dict["Rating"] as! Int,
+    totalRating: dict["TotalRatings"] as! Int))
     
     }
     

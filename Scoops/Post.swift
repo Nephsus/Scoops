@@ -30,6 +30,16 @@ struct Post {
         }
     }
     var isPublish: Bool
+    var rating: Int
+    var totalRating: Int
+    
+    var ratingValoration : CGFloat {
+        get {
+              return CGFloat(rating) / CGFloat(totalRating)
+        
+        }
+    
+    }
    
     init(withKey key: String,
          title: String,
@@ -37,7 +47,9 @@ struct Post {
          photo: String,
          text: String,
          publishDate: Int,
-         isPublish:Bool) {
+         isPublish:Bool,
+         rating: Int,
+         totalRating: Int) {
         
         self.key = key
         self.title = title
@@ -46,6 +58,8 @@ struct Post {
         self.text = text
         self.publishDate = publishDate
         self.isPublish = isPublish
+        self.rating = rating
+        self.totalRating = totalRating
         
         imagePost = AsyncData(url: URL(string: photo )!, defaultData: PostViewCell.noImageData!)
         
@@ -59,7 +73,9 @@ struct Post {
           author: String,
           photo: String,
           text: String,
-          publishDate: Int) {
+          publishDate: Int,
+          rating: Int,
+          totalRating: Int) {
         
         self.key = key
         self.title = title
@@ -68,6 +84,8 @@ struct Post {
         self.text = text
         self.publishDate = publishDate
         self.isPublish = false
+        self.rating = rating
+        self.totalRating = totalRating
         
         imagePost = AsyncData(url: URL(string: photo )!, defaultData: PostViewCell.noImageData!)
     }

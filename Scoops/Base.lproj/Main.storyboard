@@ -272,6 +272,7 @@
                     <connections>
                         <outlet property="btnNewPost" destination="Msr-7q-gcA" id="qcf-f5-QrK"/>
                         <outlet property="imageView" destination="NAO-Xg-xVa" id="TXd-7w-lAt"/>
+                        <outlet property="ratingBar" destination="9Cd-W3-SuF" id="nda-4a-R0i"/>
                         <outlet property="status" destination="fBg-58-H13" id="wWs-1H-eaF"/>
                         <outlet property="txtBody" destination="wu6-63-yve" id="pHm-U3-DdM"/>
                         <outlet property="txtTitle" destination="bID-Mm-UmU" id="KVT-kN-jWw"/>
