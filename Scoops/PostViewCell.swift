@@ -47,8 +47,6 @@ class PostViewCell: UICollectionViewCell {
     }
 
      func syncModelView(  ) {
-    
-            print("DAvviii: \(self.post.ratingValoration)")
         self.ratingBar.value = self.post.ratingValoration
         self.ratingBar.draw(ratingBar.frame)
         

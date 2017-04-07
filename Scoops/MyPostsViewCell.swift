@@ -29,11 +29,23 @@ class MyPostsViewCell: UICollectionViewCell {
     func createCell( post: Post) -> Void {
         
         self.post = post
-        
+
+        syncLookAndFeel()
         syncModelView()
         
         post.imagePost?.delegate = self
         
+    }
+    
+    
+    func syncLookAndFeel() -> Void {
+        self.layer.borderColor = UIColor(hex: "#288CFB").cgColor
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOffset = CGSize(width: CGFloat(10), height: CGFloat(10))
+        self.layer.shadowRadius = 4.0;
+        self.layer.shadowOpacity = 1.0;
+        self.layer.borderWidth = 1
+        self.layer.cornerRadius = 3
     }
     
     

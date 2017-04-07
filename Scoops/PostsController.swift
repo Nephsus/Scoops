@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ViewController: UIViewController,ICoordinatorController , IReadPost {
+class ViewController: UIViewController , IReadPost {
     
     
     
@@ -18,26 +18,42 @@ class ViewController: UIViewController,ICoordinatorController , IReadPost {
   
     var didLoadPosts: (Dictionary<String,AnyObject>) -> Void = { _ in }
    
-    var coordinator : ICoordinator!
    
-    var ModelPosts = [Post] ()
+    var ModelPosts : [Post]! = [Post] ()
+   
    
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        //Inicializo el coordinaro
-       // var self2 = self
-        //coordinator  = PostsCoordinator(withController: &self2)
         
+        registerNib()
         
+        shadowAndLookFeel()
+        
+
+        let finishClousure =  {(posts : [Post] ) in
+            self.ModelPosts = posts
+            DispatchQueue.main.async {
+                self.collectionPost.reloadData()
+            }
+        }
+       
+
+        GetAllPostsInteractor().execute(WithCompletionBlock: finishClousure)
+    }
+    
+
+    
+    
+    //MARK: Initialization And Look & Feel
+    func registerNib() -> Void {
         let nib = UINib(nibName: "PostViewCell", bundle: nil)
-        
         self.collectionPost.register(nib, forCellWithReuseIdentifier: "PostViewCell")
-        
-        
-        
+
+    }
+    
+    func shadowAndLookFeel() -> Void {
         self.title="Scoops"
         
         self.navigationController?
@@ -52,57 +68,12 @@ class ViewController: UIViewController,ICoordinatorController , IReadPost {
             .navigationBar.layer.shadowRadius = 4.0;
         self.navigationController?
             .navigationBar.layer.shadowOpacity = 1.0;
-
-        
-        let postRef = FIRDatabase.database().reference()
-        let _ = postRef.observe(FIRDataEventType.value, with: { [weak self] (snapshot) in
-            let postDict = snapshot.value as! [String : AnyObject]
-          
-            guard let `self` = self else {
-                return
-            }
-            
-            
-            self.ModelPosts = [Post]()
-            
-            let posts  = postDict["Posts"] as! Dictionary<String , AnyObject>
-            
-            for (key, value) in posts{
-                
-                print(key)
-                
-                self.ModelPosts.append( Post(withKey: key,
-                                             title: value["Titulo"] as! String,
-                                             author: value["Autor"] as! String,
-                                             photo: value["Foto"] as! String,
-                                             text: value["Texto"] as! String,
-                                             publishDate: value["publishDate"] as! Int,
-                                             rating: value["Rating"] as! Int,
-                                             totalRating: value["TotalRatings"] as! Int
-                                         ))
-            }
-            
-            DispatchQueue.main.async {
-                self.collectionPost.reloadData()
-            }
-        })
-        
-     
-
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
+    //MARK: Navigation
     func performReadPost(withPost post: Post ){
-        
-        
-       
         self.performSegue(withIdentifier: "readPost", sender: post)
-    
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -126,6 +97,8 @@ class ViewController: UIViewController,ICoordinatorController , IReadPost {
 
 }
 
+
+//MARK: Extensions by UICollectionViewDataSource and UICollectionViewDelegate
 
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     

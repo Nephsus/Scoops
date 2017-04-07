@@ -12,11 +12,8 @@ import Firebase
 
 struct RootCoordinator {
     
-    
     static func Initialize(){
-    
       FIRApp.configure()
-    
     }
 
 }

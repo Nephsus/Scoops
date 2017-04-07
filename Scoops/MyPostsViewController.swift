@@ -21,6 +21,8 @@ class MyPostsViewController: UIViewController, IMyPostCell {
     
     @IBOutlet weak var PostsPublish: UICollectionView!
     
+    
+    //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,88 +40,29 @@ class MyPostsViewController: UIViewController, IMyPostCell {
     
     
     func loadPosts(){
-    let myPostRef = FIRDatabase.database().reference()
-    
-    
-    
-    myPostRef.child("Posts").queryOrdered(byChild: "Property")
-    .queryEqual(toValue: "i02cajid@gmail.com")
-    .observe(.value, with: { snapshot in
-    print( snapshot )
-    // snapshot
-    self.ModelPosts = [Post] ()
-    self.ModelPostsPublish = [Post] ()
-    
-    for child in snapshot.children.allObjects as! [FIRDataSnapshot]{
-    
-    print(child)
-    let dict = child.value as! Dictionary<String , AnyObject>
-    
-    print("\(dict["Autor"])")
-    
-    
-    if let publish = dict["isPublish"] as! Bool? {
-    
-    if !publish {
-    self.ModelPosts.append( Post(withKey: child.key,
-    title: dict["Titulo"] as! String,
-    author: dict["Autor"] as! String,
-    photo: dict["Foto"] as! String,
-    text: dict["Texto"] as! String,
-    publishDate: dict["publishDate"] as! Int,
-    isPublish: publish,
-    rating: dict["Rating"] as! Int,
-    totalRating: dict["TotalRatings"] as! Int))
-    }else{
-    self.ModelPostsPublish.append( Post(withKey: child.key,
-    title: dict["Titulo"] as! String,
-    author: dict["Autor"] as! String,
-    photo: dict["Foto"] as! String,
-    text: dict["Texto"] as! String,
-    publishDate: dict["publishDate"] as! Int,
-    isPublish: publish,
-    rating: dict["Rating"] as! Int,
-    totalRating: dict["TotalRatings"] as! Int))
-    }
-    
-    }else{
-    self.ModelPosts.append( Post(withKey: child.key,
-    title: dict["Titulo"] as! String,
-    author: dict["Autor"] as! String,
-    photo: dict["Foto"] as! String,
-    text: dict["Texto"] as! String,
-    publishDate: dict["publishDate"] as! Int,
-    isPublish: false,
-    rating: dict["Rating"] as! Int,
-    totalRating: dict["TotalRatings"] as! Int))
-    
-    }
-    
-    
-    
-    
-    print("\(self.ModelPosts.count)")
-    
-    
-    }
-    
-    DispatchQueue.main.async {
-    self.collectionView.reloadData()
-    self.PostsPublish.reloadData()
-    }
-    
-    
-    } )
-    
+        self.ModelPosts = [Post]()
+        self.ModelPostsPublish = [Post]()
+        
+        self.collectionView.reloadData()
+        self.PostsPublish.reloadData()
+        
+        GetUserPostsInteractor().execute(withUsercode: "i02cajid@gmail.com") { (posts, postsPublish) in
+            
+            self.ModelPosts = posts
+            self.ModelPostsPublish = postsPublish
+            
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+                self.PostsPublish.reloadData()
+            }
+            
+        }
     
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
-
+    
+    //MARK: Navigation
     func performReadPost(withPost post: Post ){
         self.performSegue(withIdentifier: "AddPost", sender: post)
         
@@ -148,6 +91,7 @@ class MyPostsViewController: UIViewController, IMyPostCell {
     
     
     }
+
     
     func publishPost(withPost post: Post){
         
@@ -157,27 +101,12 @@ class MyPostsViewController: UIViewController, IMyPostCell {
         
         view.addSubview(spinner)
         
-
-    
-        let myPostRef = FIRDatabase.database().reference()
         
-        myPostRef.child("Posts/\(post.key)").updateChildValues(["isPublish" : true]) {[weak self] (error, reference) in
-            print("DO IT¡¡¡¡¡")
-            guard let `self` = self else {
-              return
-            }
-            
-            self.ModelPosts = [Post] ()
-            self.ModelPostsPublish = [Post] ()
-            
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-                self.PostsPublish.reloadData()
-            }
-           
-            self.loadPosts()
+        ChangePostToPublishState().execute(WithKey: post.key) {
             spinner.dismiss()
         }
+    
+       
     
     }
 
@@ -206,19 +135,12 @@ extension MyPostsViewController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
        
-  
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyPostsViewCell", for: indexPath) as! MyPostsViewCell
 
         
         
-        cell.layer.borderColor = UIColor(hex: "#288CFB").cgColor
-        cell.layer.shadowColor = UIColor.black.cgColor
-        cell.layer.shadowOffset = CGSize(width: CGFloat(10), height: CGFloat(10))
-        cell.layer.shadowRadius = 4.0;
-        cell.layer.shadowOpacity = 1.0;
-        cell.layer.borderWidth = 1
-        cell.layer.cornerRadius = 3
+        
         
         cell.delegate = self
         
@@ -228,10 +150,7 @@ extension MyPostsViewController: UICollectionViewDataSource, UICollectionViewDel
                 cell.createCell(post: ModelPostsPublish[indexPath.row])
 
         }
-        
-       // cell.lbAuthor.text =   ModelPosts[indexPath.row].author
-        
-        
+
         return cell
     }
     

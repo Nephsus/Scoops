@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Post {
+public struct Post {
     
     var key : String
     var title : String

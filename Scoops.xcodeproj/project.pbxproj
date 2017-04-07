@@ -9,21 +9,24 @@
 /* Begin PBXBuildFile section */
 		28327C7D1E925A00004DDC66 /* NewPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28327C7C1E925A00004DDC66 /* NewPostController.swift */; };
 		283EB5531E937FC700DAFFE4 /* IReadPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283EB5521E937FC700DAFFE4 /* IReadPost.swift */; };
+		2888EFF81E9771D10071E0CB /* GetAllPostsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2888EFF71E9771D10071E0CB /* GetAllPostsInteractor.swift */; };
+		2888EFFA1E9771E40071E0CB /* GetUserPostsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2888EFF91E9771E40071E0CB /* GetUserPostsInteractor.swift */; };
+		2888EFFD1E9773BC0071E0CB /* FireBaseManagerApiImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2888EFFC1E9773BC0071E0CB /* FireBaseManagerApiImpl.swift */; };
+		2888F0021E9790F90071E0CB /* ChangePostToPublishStateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2888F0011E9790F90071E0CB /* ChangePostToPublishStateInteractor.swift */; };
+		2888F0041E979AAA0071E0CB /* InsertPostInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2888F0031E979AAA0071E0CB /* InsertPostInteractor.swift */; };
+		2888F0061E979F120071E0CB /* UpdateReviewsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2888F0051E979F120071E0CB /* UpdateReviewsInteractor.swift */; };
 		5B0219D31E8EB5A6008664CC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B0219D21E8EB5A6008664CC /* GoogleService-Info.plist */; };
 		5B4F5C711E8ADD2600CFFA9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4F5C701E8ADD2600CFFA9D /* AppDelegate.swift */; };
-		5B4F5C731E8ADD2600CFFA9D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4F5C721E8ADD2600CFFA9D /* ViewController.swift */; };
+		5B4F5C731E8ADD2600CFFA9D /* PostsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4F5C721E8ADD2600CFFA9D /* PostsController.swift */; };
 		5B4F5C761E8ADD2600CFFA9D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B4F5C741E8ADD2600CFFA9D /* Main.storyboard */; };
 		5B4F5C781E8ADD2600CFFA9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B4F5C771E8ADD2600CFFA9D /* Assets.xcassets */; };
 		5B4F5C7B1E8ADD2600CFFA9D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B4F5C791E8ADD2600CFFA9D /* LaunchScreen.storyboard */; };
 		5B54D7821E955B8700EF3F44 /* IMyPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B54D7811E955B8700EF3F44 /* IMyPostCell.swift */; };
 		5B6796F41E8EB60A00B19DBC /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6796F31E8EB60A00B19DBC /* RootCoordinator.swift */; };
 		5B6796F71E8EC15E00B19DBC /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6796F61E8EC15E00B19DBC /* Post.swift */; };
-		5B6796F91E8EC3D200B19DBC /* PostsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6796F81E8EC3D200B19DBC /* PostsCoordinator.swift */; };
-		5B6796FB1E8EC42700B19DBC /* ICoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6796FA1E8EC42700B19DBC /* ICoordinator.swift */; };
 		5B6796FF1E8EC8E800B19DBC /* ICoordinatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6796FE1E8EC8E800B19DBC /* ICoordinatorController.swift */; };
 		5B6D89571E8C22E900BAC151 /* UIColor+Hexadecimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6D89561E8C22E900BAC151 /* UIColor+Hexadecimal.swift */; };
 		5B7CC1291E8D7E5F009B18B1 /* noimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7CC1281E8D7E5F009B18B1 /* noimage.png */; };
-		5B7CC12B1E8DAEFB009B18B1 /* pngIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7CC12A1E8DAEFB009B18B1 /* pngIcon.png */; };
 		5B82345F1E9168E700858C90 /* PostViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B82345D1E9168E700858C90 /* PostViewCell.swift */; };
 		5B8234601E9168E700858C90 /* PostViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B82345E1E9168E700858C90 /* PostViewCell.xib */; };
 		5B8234631E91785700858C90 /* MyPostsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8234611E91785700858C90 /* MyPostsViewCell.swift */; };
@@ -40,10 +43,16 @@
 		07BB3F2F5A8FD038EE8DA3C2 /* Pods_Scoops.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Scoops.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		28327C7C1E925A00004DDC66 /* NewPostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostController.swift; sourceTree = "<group>"; };
 		283EB5521E937FC700DAFFE4 /* IReadPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IReadPost.swift; sourceTree = "<group>"; };
+		2888EFF71E9771D10071E0CB /* GetAllPostsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAllPostsInteractor.swift; sourceTree = "<group>"; };
+		2888EFF91E9771E40071E0CB /* GetUserPostsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserPostsInteractor.swift; sourceTree = "<group>"; };
+		2888EFFC1E9773BC0071E0CB /* FireBaseManagerApiImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireBaseManagerApiImpl.swift; sourceTree = "<group>"; };
+		2888F0011E9790F90071E0CB /* ChangePostToPublishStateInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePostToPublishStateInteractor.swift; sourceTree = "<group>"; };
+		2888F0031E979AAA0071E0CB /* InsertPostInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsertPostInteractor.swift; sourceTree = "<group>"; };
+		2888F0051E979F120071E0CB /* UpdateReviewsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateReviewsInteractor.swift; sourceTree = "<group>"; };
 		5B0219D21E8EB5A6008664CC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5B4F5C6D1E8ADD2600CFFA9D /* Scoops.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scoops.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B4F5C701E8ADD2600CFFA9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5B4F5C721E8ADD2600CFFA9D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5B4F5C721E8ADD2600CFFA9D /* PostsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsController.swift; sourceTree = "<group>"; };
 		5B4F5C751E8ADD2600CFFA9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5B4F5C771E8ADD2600CFFA9D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5B4F5C7A1E8ADD2600CFFA9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,12 +60,9 @@
 		5B54D7811E955B8700EF3F44 /* IMyPostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMyPostCell.swift; sourceTree = "<group>"; };
 		5B6796F31E8EB60A00B19DBC /* RootCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		5B6796F61E8EC15E00B19DBC /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		5B6796F81E8EC3D200B19DBC /* PostsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsCoordinator.swift; sourceTree = "<group>"; };
-		5B6796FA1E8EC42700B19DBC /* ICoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ICoordinator.swift; sourceTree = "<group>"; };
 		5B6796FE1E8EC8E800B19DBC /* ICoordinatorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ICoordinatorController.swift; sourceTree = "<group>"; };
 		5B6D89561E8C22E900BAC151 /* UIColor+Hexadecimal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hexadecimal.swift"; sourceTree = "<group>"; };
 		5B7CC1281E8D7E5F009B18B1 /* noimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noimage.png; sourceTree = "<group>"; };
-		5B7CC12A1E8DAEFB009B18B1 /* pngIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pngIcon.png; sourceTree = "<group>"; };
 		5B82345D1E9168E700858C90 /* PostViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewCell.swift; sourceTree = "<group>"; };
 		5B82345E1E9168E700858C90 /* PostViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostViewCell.xib; sourceTree = "<group>"; };
 		5B8234611E91785700858C90 /* MyPostsViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostsViewCell.swift; sourceTree = "<group>"; };
@@ -86,6 +92,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2888EFF61E9771B40071E0CB /* Interaptors */ = {
+			isa = PBXGroup;
+			children = (
+				2888EFF71E9771D10071E0CB /* GetAllPostsInteractor.swift */,
+				2888EFF91E9771E40071E0CB /* GetUserPostsInteractor.swift */,
+				2888F0011E9790F90071E0CB /* ChangePostToPublishStateInteractor.swift */,
+				2888F0031E979AAA0071E0CB /* InsertPostInteractor.swift */,
+				2888F0051E979F120071E0CB /* UpdateReviewsInteractor.swift */,
+			);
+			name = Interaptors;
+			sourceTree = "<group>";
+		};
+		2888EFFB1E9773A90071E0CB /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				2888EFFC1E9773BC0071E0CB /* FireBaseManagerApiImpl.swift */,
+			);
+			name = Manager;
+			sourceTree = "<group>";
+		};
+		2888EFFE1E9780150071E0CB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5B8234651E91792300858C90 /* MyPostsViewController.swift */,
+				5B4F5C721E8ADD2600CFFA9D /* PostsController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		2888EFFF1E9780480071E0CB /* StoryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				5B4F5C741E8ADD2600CFFA9D /* Main.storyboard */,
+				5B4F5C791E8ADD2600CFFA9D /* LaunchScreen.storyboard */,
+			);
+			name = StoryBoards;
+			sourceTree = "<group>";
+		};
+		2888F0001E9780610071E0CB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5B82345D1E9168E700858C90 /* PostViewCell.swift */,
+				5B82345E1E9168E700858C90 /* PostViewCell.xib */,
+				5B8234611E91785700858C90 /* MyPostsViewCell.swift */,
+				5B8234621E91785700858C90 /* MyPostsViewCell.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		2C38E9C78726980CA8FDC3DF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,25 +171,21 @@
 		5B4F5C6F1E8ADD2600CFFA9D /* Scoops */ = {
 			isa = PBXGroup;
 			children = (
+				2888F0001E9780610071E0CB /* Views */,
+				2888EFFF1E9780480071E0CB /* StoryBoards */,
+				2888EFFE1E9780150071E0CB /* Controllers */,
+				2888EFFB1E9773A90071E0CB /* Manager */,
+				2888EFF61E9771B40071E0CB /* Interaptors */,
 				5B91BB111E92B8FC00F87EC7 /* Frameworks */,
 				5B6796F51E8EC15000B19DBC /* Models */,
 				5B6796F21E8EB5FA00B19DBC /* Coordinators */,
 				5B0219D21E8EB5A6008664CC /* GoogleService-Info.plist */,
-				5B7CC12A1E8DAEFB009B18B1 /* pngIcon.png */,
 				5B6D89551E8C22D100BAC151 /* Extensions */,
 				5B4F5C701E8ADD2600CFFA9D /* AppDelegate.swift */,
-				5B4F5C721E8ADD2600CFFA9D /* ViewController.swift */,
-				5B4F5C741E8ADD2600CFFA9D /* Main.storyboard */,
 				5B4F5C771E8ADD2600CFFA9D /* Assets.xcassets */,
 				5B7CC1281E8D7E5F009B18B1 /* noimage.png */,
-				5B4F5C791E8ADD2600CFFA9D /* LaunchScreen.storyboard */,
 				5B4F5C7C1E8ADD2600CFFA9D /* Info.plist */,
 				5B6796FE1E8EC8E800B19DBC /* ICoordinatorController.swift */,
-				5B82345D1E9168E700858C90 /* PostViewCell.swift */,
-				5B82345E1E9168E700858C90 /* PostViewCell.xib */,
-				5B8234611E91785700858C90 /* MyPostsViewCell.swift */,
-				5B8234621E91785700858C90 /* MyPostsViewCell.xib */,
-				5B8234651E91792300858C90 /* MyPostsViewController.swift */,
 				28327C7C1E925A00004DDC66 /* NewPostController.swift */,
 				283EB5521E937FC700DAFFE4 /* IReadPost.swift */,
 				5B54D7811E955B8700EF3F44 /* IMyPostCell.swift */,
@@ -146,8 +197,6 @@
 			isa = PBXGroup;
 			children = (
 				5B6796F31E8EB60A00B19DBC /* RootCoordinator.swift */,
-				5B6796F81E8EC3D200B19DBC /* PostsCoordinator.swift */,
-				5B6796FA1E8EC42700B19DBC /* ICoordinator.swift */,
 			);
 			name = Coordinators;
 			sourceTree = "<group>";
@@ -259,7 +308,6 @@
 				5B4F5C781E8ADD2600CFFA9D /* Assets.xcassets in Resources */,
 				5B7CC1291E8D7E5F009B18B1 /* noimage.png in Resources */,
 				5B8234601E9168E700858C90 /* PostViewCell.xib in Resources */,
-				5B7CC12B1E8DAEFB009B18B1 /* pngIcon.png in Resources */,
 				5B4F5C761E8ADD2600CFFA9D /* Main.storyboard in Resources */,
 				5B8234641E91785700858C90 /* MyPostsViewCell.xib in Resources */,
 				5B0219D31E8EB5A6008664CC /* GoogleService-Info.plist in Resources */,
@@ -324,20 +372,24 @@
 				5B8234661E91792300858C90 /* MyPostsViewController.swift in Sources */,
 				5B91BB1B1E92B90700F87EC7 /* UIImage+RoundedCorner.m in Sources */,
 				5B91BB1D1E92CBDF00F87EC7 /* AsyncData.swift in Sources */,
+				2888F0041E979AAA0071E0CB /* InsertPostInteractor.swift in Sources */,
 				5B8234631E91785700858C90 /* MyPostsViewCell.swift in Sources */,
 				28327C7D1E925A00004DDC66 /* NewPostController.swift in Sources */,
 				5B6796FF1E8EC8E800B19DBC /* ICoordinatorController.swift in Sources */,
-				5B4F5C731E8ADD2600CFFA9D /* ViewController.swift in Sources */,
+				5B4F5C731E8ADD2600CFFA9D /* PostsController.swift in Sources */,
+				2888EFFD1E9773BC0071E0CB /* FireBaseManagerApiImpl.swift in Sources */,
 				283EB5531E937FC700DAFFE4 /* IReadPost.swift in Sources */,
 				5B6D89571E8C22E900BAC151 /* UIColor+Hexadecimal.swift in Sources */,
+				2888EFFA1E9771E40071E0CB /* GetUserPostsInteractor.swift in Sources */,
 				5B82345F1E9168E700858C90 /* PostViewCell.swift in Sources */,
-				5B6796FB1E8EC42700B19DBC /* ICoordinator.swift in Sources */,
+				2888F0021E9790F90071E0CB /* ChangePostToPublishStateInteractor.swift in Sources */,
 				5B6796F41E8EB60A00B19DBC /* RootCoordinator.swift in Sources */,
 				5B6796F71E8EC15E00B19DBC /* Post.swift in Sources */,
-				5B6796F91E8EC3D200B19DBC /* PostsCoordinator.swift in Sources */,
 				5B4F5C711E8ADD2600CFFA9D /* AppDelegate.swift in Sources */,
+				2888F0061E979F120071E0CB /* UpdateReviewsInteractor.swift in Sources */,
 				5B54D7821E955B8700EF3F44 /* IMyPostCell.swift in Sources */,
 				5B91BB191E92B90700F87EC7 /* UIImage+Alpha.m in Sources */,
+				2888EFF81E9771D10071E0CB /* GetAllPostsInteractor.swift in Sources */,
 				5B91BB1A1E92B90700F87EC7 /* UIImage+Resize.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
