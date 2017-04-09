@@ -34,8 +34,25 @@ class MyPostsViewController: UIViewController, IMyPostCell {
         self.PostsPublish.register(nib, forCellWithReuseIdentifier: "MyPostsViewCell")
         
         
+        
+       // addBackButton()
+        
         loadPosts()
     
+    }
+    
+    func addBackButton() {
+        let backButton = UIButton(type: .custom)
+        backButton.setImage(UIImage(named: "BackButton.png"), for: .normal) // Image can be downloaded from here below link
+        backButton.setTitle("Back", for: .normal)
+        backButton.setTitleColor(backButton.tintColor, for: .normal) // You can change the TitleColor
+        backButton.addTarget(self, action: #selector(self.backAction(_:)), for: .touchUpInside)
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+    }
+    
+    @IBAction func backAction(_ sender: UIButton) {
+        let _ = self.navigationController?.popViewController(animated: true)
     }
     
     
@@ -46,7 +63,7 @@ class MyPostsViewController: UIViewController, IMyPostCell {
         self.collectionView.reloadData()
         self.PostsPublish.reloadData()
         
-        GetUserPostsInteractor().execute(withUsercode: "i02cajid@gmail.com") { (posts, postsPublish) in
+        GetUserPostsInteractor().execute(withUsercode: RootCoordinator.getUserId()! ) { (posts, postsPublish) in
             
             self.ModelPosts = posts
             self.ModelPostsPublish = postsPublish
@@ -78,9 +95,7 @@ class MyPostsViewController: UIViewController, IMyPostCell {
             
             let vc = segue.destination as! NewPostController
             vc.mode = .readable
-            vc.postSelected = post
-            
-            
+            vc.postSelected = post 
         }
         
         
@@ -139,15 +154,12 @@ extension MyPostsViewController: UICollectionViewDataSource, UICollectionViewDel
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyPostsViewCell", for: indexPath) as! MyPostsViewCell
 
         
-        
-        
-        
         cell.delegate = self
         
         if(collectionView == self.collectionView){
-                cell.createCell(post: ModelPosts[indexPath.row])
+                cell.createCell(post: ModelPosts[indexPath.row], isPublish:  false)
         }else{
-                cell.createCell(post: ModelPostsPublish[indexPath.row])
+                cell.createCell(post: ModelPostsPublish[indexPath.row],  isPublish:  true)
 
         }
 

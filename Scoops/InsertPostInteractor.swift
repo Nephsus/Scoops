@@ -13,13 +13,13 @@ import Foundation
 public class InsertPostInteractor{
     
     public func execute(WithUserCode userCode : String,
-                        image : UIImage,
+                        image : UIImage?,
                         title : String,
                         body  : String,
                         isPublish : Bool,
                         WithCompletionBlock finish: @escaping ( ()  -> Void ) ) ->  Void {
         
         FireBaseManagerApiImpl().insertPost(
-                WithUserCode: userCode, image: image, title: title, body: body, isPublish: isPublish, success: finish)
+                WithUserCode: userCode, imagen: image, title: title, body: body, isPublish: isPublish, success: finish)
     }
 }

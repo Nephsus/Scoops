@@ -20,16 +20,20 @@ class MyPostsViewCell: UICollectionViewCell {
     @IBOutlet weak var lbTitle: UILabel!
     
     
+    @IBOutlet weak var publishButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
     
-    func createCell( post: Post) -> Void {
+    func createCell( post: Post, isPublish: Bool) -> Void {
         
         self.post = post
 
+        if isPublish {
+           publishButton.isHidden = true
+        }
         syncLookAndFeel()
         syncModelView()
         
@@ -51,8 +55,7 @@ class MyPostsViewCell: UICollectionViewCell {
     
     
     func syncModelView(  ) {
-        
-        
+
         DispatchQueue.main.async {
             self.lbTitle.text = self.post.title
             self.imagePost.image = UIImage(data: (self.post.imagePost?.data)!)

@@ -36,7 +36,7 @@ public struct Post {
     var ratingValoration : CGFloat {
         get {
             
-            if totalRating > 0 {
+            if totalRating > 0  {
                 return  CGFloat(rating) / CGFloat(totalRating)
             }
             else{
@@ -66,7 +66,7 @@ public struct Post {
         self.rating = rating
         self.totalRating = totalRating
         
-        imagePost = AsyncData(url: URL(string: photo )!, defaultData: PostViewCell.noImageData!)
+        imagePost = AsyncData(url: URL(string: photo ), defaultData: PostViewCell.noImageData!)
         
     }
 
@@ -92,7 +92,7 @@ public struct Post {
         self.rating = rating
         self.totalRating = totalRating
         
-        imagePost = AsyncData(url: URL(string: photo )!, defaultData: PostViewCell.noImageData!)
+        imagePost = AsyncData(url: URL(string: photo ), defaultData: PostViewCell.noImageData!)
     }
     
     

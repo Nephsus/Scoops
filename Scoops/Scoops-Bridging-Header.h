@@ -5,3 +5,4 @@
 #import "UIImage+Resize.h"
 #import "UIImage+RoundedCorner.h"
 #import "UIImage+Alpha.h"
+#import <GoogleSignIn/GoogleSignIn.h>

@@ -32,6 +32,8 @@
 		5B8234631E91785700858C90 /* MyPostsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8234611E91785700858C90 /* MyPostsViewCell.swift */; };
 		5B8234641E91785700858C90 /* MyPostsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B8234621E91785700858C90 /* MyPostsViewCell.xib */; };
 		5B8234661E91792300858C90 /* MyPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8234651E91792300858C90 /* MyPostsViewController.swift */; };
+		5B84BC981E9806A600E59216 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B84BC971E9806A600E59216 /* LoginViewController.swift */; };
+		5B84BC9A1E9A486500E59216 /* UIViewController+Dismisskeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B84BC991E9A486500E59216 /* UIViewController+Dismisskeyboard.swift */; };
 		5B91BB191E92B90700F87EC7 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B91BB141E92B90700F87EC7 /* UIImage+Alpha.m */; };
 		5B91BB1A1E92B90700F87EC7 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B91BB161E92B90700F87EC7 /* UIImage+Resize.m */; };
 		5B91BB1B1E92B90700F87EC7 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B91BB181E92B90700F87EC7 /* UIImage+RoundedCorner.m */; };
@@ -68,6 +70,8 @@
 		5B8234611E91785700858C90 /* MyPostsViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostsViewCell.swift; sourceTree = "<group>"; };
 		5B8234621E91785700858C90 /* MyPostsViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPostsViewCell.xib; sourceTree = "<group>"; };
 		5B8234651E91792300858C90 /* MyPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostsViewController.swift; sourceTree = "<group>"; };
+		5B84BC971E9806A600E59216 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5B84BC991E9A486500E59216 /* UIViewController+Dismisskeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Dismisskeyboard.swift"; sourceTree = "<group>"; };
 		5B91BB121E92B90600F87EC7 /* Scoops-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Scoops-Bridging-Header.h"; sourceTree = "<group>"; };
 		5B91BB131E92B90700F87EC7 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
 		5B91BB141E92B90700F87EC7 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
@@ -115,8 +119,10 @@
 		2888EFFE1E9780150071E0CB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				28327C7C1E925A00004DDC66 /* NewPostController.swift */,
 				5B8234651E91792300858C90 /* MyPostsViewController.swift */,
 				5B4F5C721E8ADD2600CFFA9D /* PostsController.swift */,
+				5B84BC971E9806A600E59216 /* LoginViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -186,7 +192,6 @@
 				5B7CC1281E8D7E5F009B18B1 /* noimage.png */,
 				5B4F5C7C1E8ADD2600CFFA9D /* Info.plist */,
 				5B6796FE1E8EC8E800B19DBC /* ICoordinatorController.swift */,
-				28327C7C1E925A00004DDC66 /* NewPostController.swift */,
 				283EB5521E937FC700DAFFE4 /* IReadPost.swift */,
 				5B54D7811E955B8700EF3F44 /* IMyPostCell.swift */,
 			);
@@ -213,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				5B6D89561E8C22E900BAC151 /* UIColor+Hexadecimal.swift */,
+				5B84BC991E9A486500E59216 /* UIViewController+Dismisskeyboard.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -372,6 +378,7 @@
 				5B8234661E91792300858C90 /* MyPostsViewController.swift in Sources */,
 				5B91BB1B1E92B90700F87EC7 /* UIImage+RoundedCorner.m in Sources */,
 				5B91BB1D1E92CBDF00F87EC7 /* AsyncData.swift in Sources */,
+				5B84BC981E9806A600E59216 /* LoginViewController.swift in Sources */,
 				2888F0041E979AAA0071E0CB /* InsertPostInteractor.swift in Sources */,
 				5B8234631E91785700858C90 /* MyPostsViewCell.swift in Sources */,
 				28327C7D1E925A00004DDC66 /* NewPostController.swift in Sources */,
@@ -390,6 +397,7 @@
 				5B54D7821E955B8700EF3F44 /* IMyPostCell.swift in Sources */,
 				5B91BB191E92B90700F87EC7 /* UIImage+Alpha.m in Sources */,
 				2888EFF81E9771D10071E0CB /* GetAllPostsInteractor.swift in Sources */,
+				5B84BC9A1E9A486500E59216 /* UIViewController+Dismisskeyboard.swift in Sources */,
 				5B91BB1A1E92B90700F87EC7 /* UIImage+Resize.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

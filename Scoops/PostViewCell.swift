@@ -33,6 +33,7 @@ class PostViewCell: UICollectionViewCell {
     @IBOutlet weak var imagePost: UIImageView!
     
     
+    @IBOutlet weak var lbTitle: UILabel!
     
     @IBOutlet weak var ratingBar: AARatingBar!
     
@@ -48,11 +49,14 @@ class PostViewCell: UICollectionViewCell {
 
      func syncModelView(  ) {
         self.ratingBar.value = self.post.ratingValoration
+        
         self.ratingBar.draw(ratingBar.frame)
+        
         
         DispatchQueue.main.async {
         self.lbAuthor.text = self.post.author
         self.publishValue.text = self.post.publishDateFormat
+        self.lbTitle.text = self.post.title
         //self.imagePost.image = UIImage(data: (self.post.imagePost?.data)!)
             
         print( self.ratingBar.value  )

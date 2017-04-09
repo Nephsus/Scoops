@@ -12,5 +12,7 @@ target 'Scoops' do
   pod 'Firebase/Storage'
   pod 'JHSpinner'
   pod 'AARatingBar'
+  pod 'Firebase/Auth'
+  pod 'GoogleSignIn'
   
 end

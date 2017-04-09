@@ -18,14 +18,19 @@ public typealias successPostUser = ( String, Dictionary<String , AnyObject>, Int
 public class FireBaseManagerApiImpl{
     
     let postRef = FIRDatabase.database().reference()
-    
+    let storageRef =  FIRStorage.storage().reference(forURL: "gs://scoops-7c457.appspot.com")
 
 
     func getAllPosts(withCompletionBlock success: @escaping successPost ) ->  Void {
 
         let _ = postRef.observe(FIRDataEventType.value, with: { (snapshot) in
             
-            let postDict = snapshot.value as! [String : AnyObject]
+            guard let postDict = snapshot.value as? [String : AnyObject] else {
+            
+              return
+            }
+            
+           // let postDict = snapshot.value as! [String : AnyObject]
             
             success( postDict["Posts"] as! Dictionary<String , AnyObject> )
 
@@ -72,56 +77,88 @@ public class FireBaseManagerApiImpl{
 
     }
     
-    func insertPost(WithUserCode usercode : String,
-                    image: UIImage,
+    
+   
+    
+    func insertPost(WithUserCode usercode : String, imagen: UIImage?,
                     title: String,
                     body: String,
                     isPublish: Bool,
                     success: @escaping (()-> Void)) -> Void {
-        let storage = FIRStorage.storage()
+        
  
-        let storageRef = storage.reference(forURL: "gs://scoops-7c457.appspot.com")
-
+        if let imagen = imagen{
         
-        // Data in memory
-        let data: NSData = (UIImagePNGRepresentation( image ) as NSData?)!
-        // Create a reference to the file you want to upload
-        let idString =  UUID().uuidString
-        let riversRef = storageRef.child("images/\(usercode)/\(idString)")
+            //Se ha subido una imagen
+            // Cargamos la imagen en memoria
+            let data: NSData = (UIImagePNGRepresentation( imagen ) as NSData?)!
+            // Create a reference to the file you want to upload
+            let idString =  UUID().uuidString
+            let riversRef = storageRef.child("images/\(usercode)/\(idString)")
+            
+            _ = riversRef.put(data as Data, metadata: nil) { metadata, error in
+                if (error != nil) {
+                    print(error ?? "")
+                } else {
+                   
+                    self.addNewPost(WithUserCode: usercode,
+                                    metadata: metadata,
+                                    title: title,
+                                    body: body,
+                                    isPublish: isPublish,
+                                    success: success)
+                }
         
-        
-        _ = riversRef.put(data as Data, metadata: nil) { metadata, error in
-            if (error != nil) {
-                print(error ?? "")
-            } else {
-                // Metadata contains file metadata such as size, content-type, and download URL.
-                let downloadURL = metadata!.downloadURL()
-                
-                let postRef = FIRDatabase.database().reference()
-                
-                let key = postRef.child("Posts").childByAutoId().key
-
-                
-                let newPost = ["Autor" : "yo mismo",
-                               "Foto" : downloadURL?.absoluteString ?? "",
-                               "Titulo" : title,
-                               "Texto" : body,
-                               "Property" : usercode,
-                               "publishDate" : [".sv": "timestamp"] ,
-                               "IsPublish" : isPublish,
-                               "Rating": 0 ,
-                               "TotalRatings" : 0] as [String : Any]
-                
-                let registerFB = ["\(key)" : newPost]
-                
-                
-                postRef.child("Posts").updateChildValues(registerFB, withCompletionBlock: { (error, reference) in
-                    success()
-                })
-                
             }
-        }
 
+        } else{
+                    self.addNewPost(WithUserCode: usercode,
+                            metadata: nil,
+                            title: title,
+                            body: body,
+                            isPublish: isPublish,
+                            success: success)
+        
+            }
+
+    }
+    
+    
+     func addNewPost(WithUserCode usercode : String, metadata : FIRStorageMetadata?,
+                                title: String,
+                                body: String,
+                                isPublish: Bool,
+                                success: @escaping (()-> Void)) -> Void{
+    
+        // Recogo la url de la imagen subida si la hubiera
+        
+        var emptyURL = ""
+        if let _ = metadata, let downloadURL = metadata!.downloadURL(){
+            emptyURL = downloadURL.absoluteString
+        }
+        let postRef = FIRDatabase.database().reference()
+        
+        let key = postRef.child("Posts").childByAutoId().key
+        
+        
+        let newPost = ["Autor" : RootCoordinator.userInfo?.userName ?? "",
+                       "Foto" : emptyURL,
+                       "Titulo" : title,
+                       "Texto" : body,
+                       "Property" : usercode,
+                       "publishDate" : [".sv": "timestamp"] ,
+                       "isPublish" : isPublish,
+                       "Rating": 0 ,
+                       "TotalRatings" : 0] as [String : Any]
+        
+        let registerFB = ["\(key)" : newPost]
+        
+        
+        postRef.child("Posts").updateChildValues(registerFB, withCompletionBlock: { (error, reference) in
+            success()
+        })
+        
+    
     }
     
     func updateReviews(withKey key : String,

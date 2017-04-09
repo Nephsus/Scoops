@@ -16,6 +16,27 @@ class ViewController: UIViewController , IReadPost {
     @IBOutlet weak var collectionPost: UICollectionView!
     
   
+    
+    
+    
+    
+    @IBAction func AddNewPostButton(_ sender: Any) {
+        
+        
+        if RootCoordinator.isUserLogged(){
+        
+                performSegue(withIdentifier: "Authenticated", sender: self)
+        
+        }else{
+                performSegue(withIdentifier: "login", sender: self)
+        
+        }
+
+        
+    }
+    
+    
+    
     var didLoadPosts: (Dictionary<String,AnyObject>) -> Void = { _ in }
    
    

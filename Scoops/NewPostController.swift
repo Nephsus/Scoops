@@ -22,49 +22,29 @@ enum ModeWorkPostController {
 
 class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    let imagePicker = UIImagePickerController()
     
+    //MARK: Outlets
     @IBOutlet weak var txtTitle: UITextField!
-    
-    
     @IBOutlet weak var txtBody: UITextView!
-    
-    
-    
     @IBOutlet weak var status: UISwitch!
-    
-    
     @IBOutlet weak var btnNewPost: UIButton!
-    
-   
-    let userEmail : String = "i02cajid@gmail.com"
-
-
     @IBOutlet weak var imageView: UIImageView!
-    
-    
     @IBOutlet weak var ratingBar: AARatingBar!
-    
-    
     @IBOutlet weak var lbPublishStatus: UILabel!
-    
-    
-    
     @IBOutlet weak var lbValoracion: UILabel!
+    @IBOutlet weak var cameraOutlet: UIBarButtonItem!
+    @IBOutlet weak var lbEstado: UILabel!
     
     var mode : ModeWorkPostController = .editable
-    
     var postSelected  : Post!
-    
     var hasImage : Bool = false
-    
+    let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.hideKeyboardWhenTappedAround() 
         
         imagePicker.delegate = self
-        
         
         if  mode == .readable{
             self.txtTitle.isUserInteractionEnabled = false
@@ -73,7 +53,9 @@ class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINa
             self.btnNewPost.setTitle( "Valorar" , for: .normal )
             self.txtTitle.text =  postSelected.title
             self.txtBody.text =  postSelected.text
-           
+            self.navigationItem.rightBarButtonItem = nil
+            self.imageView.image = UIImage(data: (self.postSelected.imagePost?.data)!)
+            self.lbEstado.isHidden = true
         }else{
             lbValoracion.isHidden = true
             ratingBar.isHidden = true
@@ -97,18 +79,6 @@ class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINa
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 
     @IBAction func cameraButton(_ sender: Any) {
         
@@ -130,8 +100,8 @@ class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINa
         
         if  mode != .readable{ //Alta nuevo post
             
-            InsertPostInteractor().execute(WithUserCode: "i02cajid@gmail.com",
-                                           image    : imageView.image!,
+            InsertPostInteractor().execute(WithUserCode: RootCoordinator.getUserId()!,
+                                           image    : (hasImage ?imageView.image!:nil),
                                            title    : self.txtTitle.text!,
                                            body     :  self.txtBody.text!,
                                            isPublish: status.isOn,

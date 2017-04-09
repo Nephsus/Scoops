@@ -17,7 +17,7 @@ class  AsyncData {
     
     var i = 0
     
-    let url     : URL
+    let url     : URL?
     var _data    : Data
     private var _hasExternalData = false
     weak public var delegate: AsyncDataDelegate?
@@ -25,7 +25,7 @@ class  AsyncData {
     
     var data : Data{
         get{
-            if !_hasExternalData{
+            if !_hasExternalData, let _ = url{
                 DispatchQueue.global(qos: .default).async {
                     self.loadData()
                 }
@@ -34,7 +34,7 @@ class  AsyncData {
         }
     }
     
-    init(url: URL, defaultData : Data){
+    init(url: URL?, defaultData : Data){
         self.url = url
         self._data = defaultData
     }
@@ -52,7 +52,7 @@ class  AsyncData {
     func loadLocalData() -> Bool{
         
         let fm = FileManager.default
-        let local = localURL(forRemoteURL: url)
+        let local = localURL(forRemoteURL: url!)
         if fm.fileExists(atPath: local.path){
             delegate?.asyncData(self, willStartLoadingFrom: local)
             _data = try! Data(contentsOf: local)
@@ -68,17 +68,17 @@ class  AsyncData {
     private
     func loadAndSaveRemoteData(){
         
-        if delegate?.asyncData(self, shouldStartLoadingFrom: url) == true {
+        if (delegate?.asyncData(self, shouldStartLoadingFrom: url!))! == true {
             DispatchQueue.global(qos: .default).async {
-                self.delegate?.asyncData(self, willStartLoadingFrom: self.url)
+                self.delegate?.asyncData(self, willStartLoadingFrom: self.url!)
                 
-                let tmpData = try! Data(contentsOf: self.url)
+                let tmpData = try! Data(contentsOf: self.url!)
                 
                 DispatchQueue.main.async {
                     self._hasExternalData = true
                     self._data = tmpData
                     
-                    self.delegate?.asyncData(self, didEndLoadingFrom: self.url)
+                    self.delegate?.asyncData(self, didEndLoadingFrom: self.url!)
                     self.sendNotification()
                     self.saveToLocalStorage()
                     self._hasExternalData = true
@@ -91,11 +91,11 @@ class  AsyncData {
     private
     func saveToLocalStorage(){
         
-        let local = localURL(forRemoteURL: url)
+        let local = localURL(forRemoteURL: url!)
         do{
             try data.write(to: local, options: .atomic)
         }catch let error as NSError{
-            delegate?.asyncData(self, fileSystemDidFailAt: url, error: error)
+            delegate?.asyncData(self, fileSystemDidFailAt: url!, error: error)
         }
         
     }
@@ -206,7 +206,7 @@ extension AsyncData{
     func removeLocalFile(){
         
         let fm = FileManager.default
-        let local = localURL(forRemoteURL: url)
+        let local = localURL(forRemoteURL: url!)
         do{
             try fm.removeItem(at: local)
         }catch let error as NSError{

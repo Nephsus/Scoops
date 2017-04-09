@@ -200,7 +200,7 @@ import UIKit
     }
     
     /// Change rating frame
-    func ratingValueChange() {
+    public func ratingValueChange() {
         let rating = bounds.size.width * value / _maxValue
         self.filledView.frame.size.width = rating
     }
